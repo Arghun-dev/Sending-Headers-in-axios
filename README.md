@@ -27,3 +27,43 @@ export const logout = (token) => (dispatch) => {
 As you can see in this example because we don't have body we should send the body as **null**.
 
 **This is important that you have to send headers as second parameter not the first**
+
+
+
+So you should send data in this type in **axios.get**
+
+without body and with body does not have difference
+
+```
+export const userProfileImage_Get = (token) => dispatch => {
+    axios
+        .get(`${API_BASE_ADDRESS}Users/UserProfileImage_Get`, { headers: { 'Token': token } })
+        .then(res => {
+            dispatch({
+                type: USER_PROFILE_IMAGE_GET,
+                payload: res.data
+            })
+        })
+}
+
+
+
+AND
+
+
+export const getusermenulist = (SystemId, token) => (dispatch) => {
+  axios
+    .get(
+      `${API_BASE_ADDRESS}Users/UserMenu_List?UserId=0&SystemId=${SystemId}`, { headers: { 'Token': token } }
+    )
+    .then((res) => {
+      dispatch({
+        type: GET_USER_MENU_LIST,
+        payload: res.data,
+      });
+    })
+    .catch(err => {
+      console.log(err)
+    })
+};
+```
